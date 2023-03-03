@@ -80,7 +80,11 @@ namespace Kooboo.CMS.Sites.Services
                 List<Type> types = new List<Type>();
                 foreach (var assembly in GetAssemblies(site))
                 {
-                    types.AddRange(assembly.GetTypes());
+                    try{
+                        types.AddRange(assembly.GetTypes());
+                    }catch(Exception ex){
+                        Console.WriteLine(ex.Message);
+                    }
                 }
                 return types;
             });
